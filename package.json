@@ -1,0 +1,39 @@
+{
+	"name": "restful-express-mongo",
+	"version": "0.1.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon --exec babel-node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mengasis/restful-express-mongo.git"
+	},
+	"keywords": [
+		"express",
+		"mongo",
+		"node",
+		"api",
+		"restful",
+		"javascript",
+		"eslint"
+	],
+	"author": "Manuel Venegas",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/mengasis/restful-express-mongo/issues"
+	},
+	"homepage": "https://github.com/mengasis/restful-express-mongo#readme",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.4",
+		"mongodb": "^3.1.8",
+		"nodemon": "^1.18.4"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.1.2",
+		"@babel/node": "^7.0.0",
+		"@babel/preset-env": "^7.1.0"
+	}
+}
