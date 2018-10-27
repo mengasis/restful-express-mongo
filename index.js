@@ -1,18 +1,21 @@
 import http from 'http'
 import express from 'express'
 import bodyParser from 'body-parser'
+import connectToDb from './src/config/db'
+
+connectToDb()
 
 import routes from './src/routes'
 
 const app = express()
 app.server = http.createServer(app)
 
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 routes.map(({ path, middleware = [], handler }) => {
 	return app.use(path, middleware, handler)
 })
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 const server = http.createServer(app)
 server.listen(3000)
