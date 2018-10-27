@@ -1,3 +1,5 @@
+import { create as createHeroe } from '../services/heroes'
+
 export const list = (req, res) => res.send(['All'])
 
 export const find = (req, res) =>
@@ -8,8 +10,12 @@ export const find = (req, res) =>
 		battles: []
 	})
 
-export const create = (req, res) =>
-	res.send({ id: '0x123', message: 'Successfully created' })
+export const create = async (req, res) => {
+	const { id, name, nationality, battles } = req.body
+
+	await createHeroe(id, name, nationality, battles)
+	return res.send({ id, message: `Successfully created - heroe: ${name}` })
+}
 
 export const update = (req, res) =>
 	res.send({ id: req.params.id, message: 'Successfully updated' })
