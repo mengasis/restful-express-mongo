@@ -1,5 +1,8 @@
+const nodeExternals = require('webpack-node-externals')
+
 module.exports = {
-	node: { fs: 'empty', net: 'empty' },
+	target: 'node',
+	externals: [nodeExternals()],
 	module: {
 		rules: [
 			{
