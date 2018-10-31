@@ -1,10 +1,10 @@
 import express from 'express'
-import { list, getHeroe, create, update, remove } from '../controllers/heroes'
+import { list, find, create, update, remove } from '../controllers/heroes'
 
 const router = express.Router()
 
 router.get('/', list)
-router.get('/:id', getHeroe)
+router.get('/:id', find)
 router.post('/', create)
 router.put('/:id', update)
 router.delete('/:id', remove)

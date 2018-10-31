@@ -5,20 +5,27 @@ export const list = async (req, res) => {
 	res.send(heroes)
 }
 
-export const getHeroe = async (req, res) => {
-	const heroe = await heroesServices.getHeroeById(req.params.id)
+export const find = async (req, res) => {
+	const heroe = await heroesServices.getById(req.params.id)
 	res.send(heroe)
 }
 
 export const create = async (req, res) => {
 	const { id, name, nationality, battles } = req.body
 
-	await heroesServices.create(id, name, nationality, battles)
+	await heroesServices.setUser(id, name, nationality, battles)
 	res.send({ id, message: `Successfully created - heroe: ${name}` })
 }
 
-export const update = (req, res) =>
-	res.send({ id: req.params.id, message: 'Successfully updated' })
+export const update = async (req, res) => {
+	const { id, name, nationality, battles } = req.body
 
-export const remove = (req, res) =>
-	res.send({ id: req.params.id, message: 'Successfully removed' })
+	await heroesServices.setUser(id, name, nationality, battles)
+	res.send({ id: id, message: 'Successfully updated - heroe: ${name}' })
+}
+
+export const remove = async (req, res) => {
+	const { id } = req.body
+	await heroesServices.removeUser(id)
+	res.send({ id, message: 'Successfully removed - heroe: ${name}' })
+}

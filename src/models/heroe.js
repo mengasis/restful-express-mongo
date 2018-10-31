@@ -1,6 +1,6 @@
 import Mongoose from 'mongoose'
 
-const heroesSchema = new Mongoose.Schema({
+const heroeSchema = new Mongoose.Schema({
 	id: Number,
 	name: { type: String, default: '', trim: true },
 	nationality: { type: String, default: 'None', trim: true },
@@ -8,4 +8,4 @@ const heroesSchema = new Mongoose.Schema({
 	createdAt: { type: Date, default: Date.now }
 })
 
-export default Mongoose.model('Heroes', heroesSchema)
+export default Mongoose.model('Heroe', heroeSchema)

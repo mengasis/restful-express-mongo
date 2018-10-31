@@ -1,8 +1,10 @@
-import Heroes from '../models/heroes'
+import Heroe from '../models/heroe'
 
-export const create = (id, name, nationality, battles) =>
-	Heroes.create({ id, name, nationality, battles })
+export const getAll = () => Heroe.find()
 
-export const getAll = () => Heroes.find()
+export const getById = id => Heroe.find({ id })
 
-export const getHeroeById = id => Heroes.find({ id })
+export const setUser = (id, name, nationality, battles) =>
+	Heroe.update({ id }, { name, nationality, battles }, { upsert: true })
+
+export const removeUser = id => Heroe.deleteOne({ id })
