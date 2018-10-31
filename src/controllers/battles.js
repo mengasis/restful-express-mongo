@@ -1,18 +1,31 @@
-export const list = (req, res) => res.send(['All'])
+import * as battleServices from '../services/battles'
 
-export const find = (req, res) =>
-	res.send({
-		id: req.params.id,
-		name: 'Asedio de Tiro',
-		location: 'Tiro, Libano',
-		date: '332 a.C.'
-	})
+export const list = async (req, res) => {
+	const battles = await battleServices.getAll()
+	res.send(battles)
+}
 
-export const create = (req, res) =>
-	res.send({ id: 'battle-?', message: 'Successfully created' })
+export const find = async (req, res) => {
+	const battle = await battleServices.getById(req.params.id)
+	res.send(battle)
+}
 
-export const update = (req, res) =>
-	res.send({ id: req.params.id, message: 'Successfully updated' })
+export const create = async (req, res) => {
+	const { id, name, location, date } = req.body
 
-export const remove = (req, res) =>
-	res.send({ id: req.params.id, message: 'Successfully removed' })
+	await battleServices.setBattle(id, name, location, date)
+	res.send({ id, message: `Successfully created - battle: ${name}` })
+}
+
+export const update = async (req, res) => {
+	const { id, name, location, date } = req.body
+
+	await battleServices.setBattle(id, name, location, date)
+	res.send({ id: id, message: 'Successfully updated - battle: ${name}' })
+}
+
+export const remove = async (req, res) => {
+	const { id } = req.body
+	await battleServices.removeBattle(id)
+	res.send({ id, message: 'Successfully removed - battle: ${name}' })
+}
