@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "nodemon --exec babel-node ./src/index.js",
 		"debug": "babel-node --nolazy --inspect-brk=9229 index.js",
-		"build": "webpack --config ./webpack.prod.js"
+		"build": "webpack --config ./webpack.config.js"
 	},
 	"repository": {
 		"type": "git",
