@@ -1,11 +1,11 @@
 import http from 'http'
 import express from 'express'
 import bodyParser from 'body-parser'
-import connectToDb from './src/config/db'
+import connectToDb from './config/db'
 
 connectToDb()
 
-import routes from './src/routes'
+import routes from './routes'
 
 const app = express()
 app.server = http.createServer(app)
