@@ -10,22 +10,32 @@ export const find = async (req, res) => {
 	res.send(battle)
 }
 
-export const create = async (req, res) => {
+export const create = (req, res) => {
 	const { id, name, location, date } = req.body
 
-	await battleServices.setBattle(id, name, location, date)
-	res.send({ id, message: `Successfully created - battle: ${name}` })
+	battleServices.setBattle(id, name, location, date).then(({ upserted }) => {
+		if (!upserted) res.send({ id, message: 'The battle already exists.' })
+
+		res.send({ id, message: `Successfully created - battle: ${name}` })
+	})
 }
 
-export const update = async (req, res) => {
+export const update = (req, res) => {
 	const { id, name, location, date } = req.body
 
-	await battleServices.setBattle(id, name, location, date)
-	res.send({ id: id, message: 'Successfully updated - battle: ${name}' })
+	battleServices.setBattle(id, name, location, date).then(({ n }) => {
+		if (!n) res.send({ id, message: 'The battle is not found' })
+
+		res.send({ id: id, message: 'Successfully updated - battle: ${name}' })
+	})
 }
 
-export const remove = async (req, res) => {
+export const remove = (req, res) => {
 	const { id } = req.body
-	await battleServices.removeBattle(id)
-	res.send({ id, message: 'Successfully removed - battle: ${name}' })
+
+	battleServices.removeBattle(id).then(({ n }) => {
+		if (!n) res.send({ id, message: 'The battle is not found' })
+
+		res.send({ id, message: `Successfully removed - battle: ${id}` })
+	})
 }
