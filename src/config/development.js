@@ -1,6 +1,6 @@
 export default {
 	DB: {
-		HOST: '127.0.0.1',
+		HOST: process.env.DB_HOST || '127.0.0.1',
 		NAME: 'api_express'
 	}
 }

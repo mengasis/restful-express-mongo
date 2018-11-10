@@ -6,7 +6,7 @@ Mongoose.Promise = global.Promise
 const connectToDb = async () => {
 	try {
 		await Mongoose.connect(
-			`mongodb://mongo:27017/${config.DB.NAME}`,
+			`mongodb://${config.DB.HOST}:27017/${config.DB.NAME}`,
 			{ useNewUrlParser: true }
 		)
 		console.log('Connected to mongo!!!')
