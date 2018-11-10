@@ -4,18 +4,16 @@ services:
   web:
     build: .
     container_name: "myapp"
-    depends_on:
-      - mongodb
     ports: 
-      - "3000:3000"
+      - "80:3000"
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
+    links:
+      - mongodb
 
   mongodb:
     image: mongo:latest
-    container_name: "mongodb"
-    volumes:
-      - ./data/db:/data/db
+    container_name: "mongo"
     ports: 
       - "27017:27017"
